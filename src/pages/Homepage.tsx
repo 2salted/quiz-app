@@ -1,12 +1,10 @@
-import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
 import QuizLink from "../components/QuizLink";
 
 export default function Homepage() {
   let quizData = [
-    { name: "History Test", link: "/quiz/1" },
-    { name: "Physics Test", link: "/quiz/2" },
-    { name: "Math Test", link: "/quiz/3" },
+    { name: "History Test", link: "/quiz/HistoryTest" },
+    { name: "Physics Test", link: "/quiz/PhysicsTest" },
+    { name: "Math Test", link: "/quiz/MathTest" },
   ];
 
   return (
