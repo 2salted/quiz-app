@@ -4,9 +4,9 @@ import QuizLink from "../components/QuizLink";
 
 export default function Homepage() {
   let quizData = [
-    { name: "History Test", link: "/quiz" },
-    { name: "Physics Test", link: "/quiz2" },
-    { name: "Math Test", link: "/quiz3" },
+    { name: "History Test", link: "/quiz/1" },
+    { name: "Physics Test", link: "/quiz/2" },
+    { name: "Math Test", link: "/quiz/3" },
   ];
 
   return (
