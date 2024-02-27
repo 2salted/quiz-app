@@ -1,15 +1,29 @@
-import React from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { quizes, questions } from "../utils";
 
 export default function Quiz() {
-  const { id } = useParams();
+  const { quizId } = useParams();
+  const [currentIndexState, setCurrentIndexState] = useState(0);
 
-  let quizContent;
-
-  if (id === "History") {
-  } else if (id === "Physics") {
-  } else if (id === "Math") {
+  for (let i = 0; i < questions.length; i++) {
+    if (quizId !== undefined) {
+      let question = questions[i];
+      if (question.quizId === parseInt(quizId)) {
+      }
+    }
   }
 
-  return <>{quizContent}</>;
+  function nextQuestion() {
+    if (currentIndexState >= 0) {
+      setCurrentIndexState(currentIndexState + 1);
+    }
+  }
+  function prevQuestion() {
+    if (currentIndexState > 0) {
+      setCurrentIndexState(currentIndexState - 1);
+    }
+  }
+
+  return <></>;
 }
