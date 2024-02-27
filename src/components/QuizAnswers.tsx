@@ -18,7 +18,7 @@ export default function QuizAnswers({ answers }: Props) {
           />
           <label
             htmlFor="checked-checkbox"
-            className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"
+            className="ms-3 text-base font-medium text-gray-900 dark:text-gray-300"
           >
             {answer}
           </label>
