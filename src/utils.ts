@@ -6,21 +6,39 @@ let quizes = [
 
 let questions = [
   {
+    quizId: 1,
+    answer: 1,
+    text: "Question 1 (id 1)",
+    answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
+  },
+  {
+    quizId: 1,
+    answer: 1,
+    text: "Question 2 (id 1)",
+    answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
+  },
+  {
     quizId: 2,
     answer: 1,
-    text: "Question 1",
+    text: "Question 1 (id 2)",
     answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
   },
   {
-    quizId: 1,
+    quizId: 2,
     answer: 1,
-    text: "Question 1",
+    text: "Question 2 (id 2)",
     answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
   },
   {
-    quizId: 1,
+    quizId: 3,
     answer: 1,
-    text: "Question 1",
+    text: "Question 1 (id 3)",
+    answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
+  },
+  {
+    quizId: 3,
+    answer: 1,
+    text: "Question 2 (id 3)",
     answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
   },
 ];
