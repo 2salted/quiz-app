@@ -31,8 +31,11 @@ export default function Quiz() {
   return (
     <>
       <div className="flex justify-center items-start h-screen">
-        <div className="bg-white shadow-md rounded-lg max-w-3xl border-2 border-blue-500 p-4 mt-16">
-          <p>{matchedIdText + ""}</p>
+        <div className="bg-white shadow-md rounded-lg w-1/2 border-2 border-blue-600 p-4 mt-16">
+          <h3 className="text-center">{matchedIdText}</h3>
+          <div>
+            <input type="checkbox" />
+          </div>
         </div>
       </div>
     </>
