@@ -35,11 +35,13 @@ export default function Quiz() {
 
   return (
     <>
-      <div className="flex justify-center items-start h-screen">
-        <div className="bg-white shadow-md rounded-lg w-1/2 border-2 border-blue-600 p-4 mt-16">
-          <h3 className="text-center">{matchedIdText}</h3>
-          <div className="flex flex-col items-center">
-            <QuizAnswers answer={matchedIdAnswers} />
+      <div className="flex flex-col items-center h-screen">
+        <div className="pt-24 w-full h-full flex flex-col items-center">
+          <div className="bg-white shadow-2xl rounded-lg w-3/4 md:w-1/2 border-2 border-blue-300 p-4">
+            <h3 className="text-center text-3xl font-bold">{matchedIdText}</h3>
+            <div className="flex flex-col">
+              <QuizAnswers answers={matchedIdAnswers} />
+            </div>
           </div>
         </div>
       </div>
