@@ -5,7 +5,7 @@ export default function Homepage() {
   return (
     <>
       <div className="flex flex-col justify-center items-center h-screen">
-        <h2 className="text-center text-3xl mb-14">
+        <h2 className="text-center text-3xl pb-10">
           Choose a quiz of your choice!
         </h2>
         {quizes.map((quiz, index) => (

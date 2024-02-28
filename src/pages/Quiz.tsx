@@ -25,7 +25,6 @@ export default function Quiz() {
   function nextQuestion() {
     if (currentIndexState >= 0) {
       setCurrentIndexState(currentIndexState + 1);
-      //maybe a for loop to look for the next "question"
     }
   }
   function prevQuestion() {
