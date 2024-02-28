@@ -25,6 +25,7 @@ export default function Quiz() {
   function nextQuestion() {
     if (currentIndexState >= 0) {
       setCurrentIndexState(currentIndexState + 1);
+      //maybe a for loop to look for the next "question"
     }
   }
   function prevQuestion() {
@@ -42,6 +43,20 @@ export default function Quiz() {
             <div className="flex flex-col">
               <QuizAnswers answers={matchedIdAnswers} />
             </div>
+          </div>
+          <div className="flex flex-row justify-between w-3/4 md:w-1/2">
+            <button
+              className="rounded-xl p-4 text-xl border-blue-300 text-blue-300"
+              onClick={() => prevQuestion()}
+            >
+              {"<Back"}
+            </button>
+            <button
+              className="rounded-xl p-4 text-xl border-blue-300 text-blue-300"
+              onClick={() => nextQuestion()}
+            >
+              {"Next>"}
+            </button>
           </div>
         </div>
       </div>
