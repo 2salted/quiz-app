@@ -4,11 +4,13 @@ import { questions } from "../utils";
 import QuizAnswers from "../components/QuizAnswers";
 
 export default function Quiz() {
-  const [isNextVisible, setIsNextVisible] = useState(false);
+  const [currentCheckboxIndex, setCurrentCheckboxIndex] = useState(0);
+  const [inputChecked, setInputChecked] = useState(false);
   const { quizId } = useParams();
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
   let matchedIdText = "";
   let matchedIdAnswers = [""];
+  let currentAnswerIndex: number;
 
   for (let i = 0; i < questions.length; i++) {
     if (quizId !== undefined) {
@@ -19,11 +21,12 @@ export default function Quiz() {
       ) {
         matchedIdText = question.text;
         matchedIdAnswers = question.answers;
+        currentAnswerIndex = question.answerIndex;
         break;
       }
     }
   }
-
+  console.log(currentCheckboxIndex);
   return (
     <>
       <div className="flex flex-col items-center h-screen">
@@ -32,8 +35,9 @@ export default function Quiz() {
             <h3 className="text-center text-3xl font-bold">{matchedIdText}</h3>
             <div className="flex flex-col">
               <QuizAnswers
-                setIsNextVisibleProp={setIsNextVisible}
+                setIsNextVisible={setInputChecked}
                 answers={matchedIdAnswers}
+                setCheckboxIndex={setCurrentCheckboxIndex}
               />
             </div>
           </div>
@@ -49,14 +53,16 @@ export default function Quiz() {
               {"<Back"}
             </button>
 
-            {isNextVisible && (
+            {inputChecked && (
               <button
                 className="rounded-xl p-4 text-xl border-blue-300 text-blue-400"
                 onClick={() => {
                   if (currentQuestionId <= 0) {
-                    setCurrentQuestionId(
-                      (prevQuestionId) => prevQuestionId + 1
-                    );
+                    if (currentCheckboxIndex === currentAnswerIndex) {
+                      setCurrentQuestionId(
+                        (prevQuestionId) => prevQuestionId + 1
+                      );
+                    }
                   }
                 }}
               >

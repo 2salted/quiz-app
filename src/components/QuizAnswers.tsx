@@ -1,24 +1,14 @@
-import { useState } from "react";
-
 type Props = {
   answers: string[];
-  setIsNextVisibleProp: React.Dispatch<React.SetStateAction<boolean>>;
+  setCheckboxIndex: React.Dispatch<React.SetStateAction<number>>;
+  setIsNextVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function QuizAnswers({
   answers,
-  setIsNextVisibleProp: setIsNextVisible,
+  setIsNextVisible,
+  setCheckboxIndex,
 }: Props) {
-  const inputChange = (event: { target: { checked: any } }) => {
-    if (event.target.checked) {
-      setIsNextVisible(true);
-      console.log("yes");
-    } else {
-      setIsNextVisible(false);
-    }
-    console.log();
-  };
-
   return (
     <div className="flex flex-col">
       {answers.map((answer, index) => (
@@ -28,9 +18,17 @@ export default function QuizAnswers({
         >
           <input
             id="checked-checkbox"
-            type="checkbox"
+            type="radio"
+            name="answers"
             className="w-5 h-5 text-blue-400 bg-gray-100 border-gray-300 rounded"
-            onChange={inputChange}
+            onChange={(e) => {
+              if (e.target.checked) {
+                setIsNextVisible(true);
+                setCheckboxIndex(index);
+              } else {
+                setIsNextVisible(false);
+              }
+            }}
           />
           <label
             htmlFor="checked-checkbox"
