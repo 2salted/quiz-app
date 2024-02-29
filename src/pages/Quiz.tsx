@@ -4,7 +4,7 @@ import { questions } from "../utils";
 import QuizAnswers from "../components/QuizAnswers";
 
 export default function Quiz() {
-  const [currentCheckboxIndex, setCurrentCheckboxIndex] = useState(0);
+  const [currentCheckboxIndex, setCurrentCheckboxIndex] = useState(- 1);
   const [inputChecked, setInputChecked] = useState(false);
   const { quizId } = useParams();
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
@@ -40,6 +40,7 @@ export default function Quiz() {
             </div>
             <div className="flex flex-col">
               <QuizAnswers
+                isChecked={currentCheckboxIndex}
                 setIsNextVisible={setInputChecked}
                 answers={matchedIdAnswers}
                 setCheckboxIndex={setCurrentCheckboxIndex}
@@ -62,12 +63,13 @@ export default function Quiz() {
               <button
                 className="rounded-xl p-4 text-xl border-blue-300 text-blue-400"
                 onClick={() => {
-                  if (currentQuestionId <= 0) {
+                  if (currentQuestionId >= 0) {
                     if (currentCheckboxIndex === currentAnswerIndex) {
                       setCurrentQuestionId(
                         (prevQuestionId) => prevQuestionId + 1
                       );
                       setErrorState("")
+                      setCurrentCheckboxIndex(-1)
                     } else {
                       setErrorState("Wrong Answer, select a different answer!");
                     }
