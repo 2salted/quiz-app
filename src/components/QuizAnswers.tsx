@@ -9,6 +9,7 @@ export default function QuizAnswers({
   setIsNextVisible,
   setCheckboxIndex,
 }: Props) {
+
   return (
     <div className="flex flex-col">
       {answers.map((answer, index) => (
