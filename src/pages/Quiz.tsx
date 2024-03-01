@@ -4,15 +4,20 @@ import { questions } from "../utils";
 import QuizAnswers from "../components/QuizAnswers";
 
 export default function Quiz() {
-  const [currentCheckboxIndex, setCurrentCheckboxIndex] = useState(- 1);
+  const [currentCheckboxIndex, setCurrentCheckboxIndex] = useState(-1);
   const [inputChecked, setInputChecked] = useState(false);
   const { quizId } = useParams();
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
   const [errorState, setErrorState] = useState("");
+  const [showState, setShowState] = useState(false);
+  let timeoutId: number;
+  //create a function that when called will set the (showState) to being true
 
+  console.log(showState);
   let matchedIdText = "";
   let matchedIdAnswers = [""];
   let currentAnswerIndex: number;
+  let questionIdCount = [];
 
   for (let i = 0; i < questions.length; i++) {
     if (quizId !== undefined) {
@@ -29,15 +34,30 @@ export default function Quiz() {
     }
   }
 
+  for (let x = 0; x < questions.length; x++) {
+    if (quizId !== undefined) {
+      let question = questions[x];
+      if (question.quizId === parseInt(quizId)) {
+        questionIdCount.push(question.questionId);
+      }
+    }
+  }
+  let questionCountLength = questionIdCount.length;
+  console.log(questionCountLength);
+  //for loop that will iterate through all existing
   return (
     <>
       <div className="flex flex-col items-center h-screen">
         <div className="pt-24 w-full h-full flex flex-col items-center">
           <div className="bg-white shadow-2xl rounded-lg w-3/4 md:w-1/2 border-2 border-blue-300 p-4">
             <h3 className="text-center text-3xl font-bold">{matchedIdText}</h3>
-            <div className="text-center text-red-500 font-bold text-lg">
-              {errorState}
-            </div>
+
+            {showState && (
+              <div className="text-center text-red-500 font-bold text-lg">
+                {errorState}
+              </div>
+            )}
+
             <div className="flex flex-col">
               <QuizAnswers
                 isChecked={currentCheckboxIndex}
@@ -63,15 +83,27 @@ export default function Quiz() {
               <button
                 className="rounded-xl p-4 text-xl border-blue-300 text-blue-400"
                 onClick={() => {
-                  if (currentQuestionId >= 0) {
+                  if (currentQuestionId >= 0 && currentQuestionId + 1 < questionCountLength) {
                     if (currentCheckboxIndex === currentAnswerIndex) {
                       setCurrentQuestionId(
                         (prevQuestionId) => prevQuestionId + 1
                       );
-                      setErrorState("")
-                      setCurrentCheckboxIndex(-1)
+                      setErrorState("");
+                      setShowState(false);
+                      setCurrentCheckboxIndex(-1);
                     } else {
-                      setErrorState("Wrong Answer, select a different answer!");
+                      setErrorState(
+                        "Wrong Answer! Please select a different answer!"
+                      );
+                      setShowState(true);
+                      // Clear the existing timeout if it exists
+                      if (timeoutId) {
+                        clearTimeout(timeoutId);
+                      }
+                      // Set a new timeout to hide the message after 1500 milliseconds
+                      timeoutId = setTimeout(() => {
+                        setShowState(false);
+                      }, 2500);
                     }
                   }
                 }}
