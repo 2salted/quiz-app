@@ -24,14 +24,24 @@ let questions = [
     answerIndex: 0,
     questionId: 2,
     text: "Which of the next names made the movie corpse bride?",
-    answers: ["Tim Burton", "Steven Spielberg", "Quentin Tarantino", "David Cronenberg"],
+    answers: [
+      "Tim Burton",
+      "Steven Spielberg",
+      "Quentin Tarantino",
+      "David Cronenberg",
+    ],
   },
   {
     quizId: 1,
     answerIndex: 0,
     questionId: 3,
     text: "Which isn't an animated movie?",
-    answers: ["Spiderman into the spiderverse", "Unicorn wars", "Inside out", "Honey, I Shrunk the Kids"],
+    answers: [
+      "Spiderman into the spiderverse",
+      "Unicorn wars",
+      "Inside out",
+      "Honey, I Shrunk the Kids",
+    ],
   },
   {
     quizId: 2,

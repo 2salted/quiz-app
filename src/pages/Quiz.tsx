@@ -10,12 +10,10 @@ export default function Quiz() {
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
   const [errorState, setErrorState] = useState("");
   const [showState, setShowState] = useState(false);
-  //create a function that when called will set the (showState) to being true
 
-  console.log(showState);
   let matchedIdText = "";
   let matchedIdAnswers = [""];
-  let currentAnswerIndex: number;
+  let currentAnswerIndex: number | undefined = undefined;
   let questionIdCount = [];
 
   for (let i = 0; i < questions.length; i++) {
@@ -41,22 +39,32 @@ export default function Quiz() {
       }
     }
   }
+
   let questionCountLength = questionIdCount.length;
-  console.log(questionCountLength);
-  //for loop that will iterate through all existing
+
+  if (currentAnswerIndex === undefined) {
+    return (
+      <div className="flex flex-col items-center h-screen">
+        <div className="pt-24 w-full h-full flex flex-col items-center">
+          <div className="bg-white shadow-2xl rounded-lg w-3/4 md:w-1/2 border-2 border-blue-300 p-4">
+            Quiz does not exist!
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="flex flex-col items-center h-screen">
         <div className="pt-24 w-full h-full flex flex-col items-center">
           <div className="bg-white shadow-2xl rounded-lg w-3/4 md:w-1/2 border-2 border-blue-300 p-4">
             <h3 className="text-center text-3xl font-bold">{matchedIdText}</h3>
-
             {showState && (
               <div className="text-center text-red-500 font-bold text-lg">
                 {errorState}
               </div>
             )}
-
             <div className="flex flex-col">
               <QuizAnswers
                 isChecked={currentCheckboxIndex}
