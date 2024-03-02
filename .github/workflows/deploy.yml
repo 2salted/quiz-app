@@ -18,7 +18,7 @@ jobs:
         run: npm i && npm run build
 
       - name: upload
-        uses: actions/upload-pages-artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dist/
     # <Not provided for brevity>
