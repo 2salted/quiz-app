@@ -10,7 +10,6 @@ export default function Quiz() {
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
   const [errorState, setErrorState] = useState("");
   const [showState, setShowState] = useState(false);
-  let timeoutId: number;
   //create a function that when called will set the (showState) to being true
 
   console.log(showState);
@@ -83,7 +82,10 @@ export default function Quiz() {
               <button
                 className="rounded-xl p-4 text-xl border-blue-300 text-blue-400"
                 onClick={() => {
-                  if (currentQuestionId >= 0 && currentQuestionId + 1 < questionCountLength) {
+                  if (
+                    currentQuestionId >= 0 &&
+                    currentQuestionId + 1 < questionCountLength
+                  ) {
                     if (currentCheckboxIndex === currentAnswerIndex) {
                       setCurrentQuestionId(
                         (prevQuestionId) => prevQuestionId + 1
@@ -96,12 +98,7 @@ export default function Quiz() {
                         "Wrong Answer! Please select a different answer!"
                       );
                       setShowState(true);
-                      // Clear the existing timeout if it exists
-                      if (timeoutId) {
-                        clearTimeout(timeoutId);
-                      }
-                      // Set a new timeout to hide the message after 1500 milliseconds
-                      timeoutId = setTimeout(() => {
+                      setTimeout(() => {
                         setShowState(false);
                       }, 2500);
                     }
