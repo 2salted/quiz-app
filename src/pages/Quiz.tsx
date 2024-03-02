@@ -57,9 +57,7 @@ export default function Quiz() {
   }
 
   if (showResult) {
-    return (
-      <Results />
-    )
+    return <Results />;
   }
 
   return (
@@ -111,7 +109,7 @@ export default function Quiz() {
                       setErrorState("");
                       setShowState(false);
                       setCurrentCheckboxIndex(-1);
-                      setInputChecked(false)
+                      setInputChecked(false);
                     } else {
                       setErrorState(
                         "Wrong Answer! Please select a different answer!"
