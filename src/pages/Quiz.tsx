@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { questions } from "../utils";
 import QuizAnswers from "../components/QuizAnswers";
+import Results from "../components/Results";
 
 export default function Quiz() {
   const [currentCheckboxIndex, setCurrentCheckboxIndex] = useState(-1);
@@ -10,6 +11,7 @@ export default function Quiz() {
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
   const [errorState, setErrorState] = useState("");
   const [showState, setShowState] = useState(false);
+  const [showResult, setShowResult] = useState(false);
 
   let matchedIdText = "";
   let matchedIdAnswers = [""];
@@ -54,6 +56,12 @@ export default function Quiz() {
     );
   }
 
+  if (showResult) {
+    return (
+      <Results />
+    )
+  }
+
   return (
     <>
       <div className="flex flex-col items-center h-screen">
@@ -90,7 +98,9 @@ export default function Quiz() {
               <button
                 className="rounded-xl p-4 text-xl border-blue-300 text-blue-400"
                 onClick={() => {
-                  if (
+                  if (currentQuestionId + 1 >= questionCountLength) {
+                    setShowResult(true);
+                  } else if (
                     currentQuestionId >= 0 &&
                     currentQuestionId + 1 < questionCountLength
                   ) {
@@ -101,6 +111,7 @@ export default function Quiz() {
                       setErrorState("");
                       setShowState(false);
                       setCurrentCheckboxIndex(-1);
+                      setInputChecked(false)
                     } else {
                       setErrorState(
                         "Wrong Answer! Please select a different answer!"
