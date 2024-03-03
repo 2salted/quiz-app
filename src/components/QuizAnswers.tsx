@@ -17,7 +17,7 @@ export default function QuizAnswers({
       {answers.map((answer, index) => (
         <div
           key={index}
-          className="flex items-center mt-4 mb-4 bg-blue-300 p-2 shadow-xl rounded-xl"
+          className="flex items-center mt-4 mb-4 bg-blue-400 p-2 shadow-xl rounded-xl"
         >
           <input
             id="checked-checkbox"

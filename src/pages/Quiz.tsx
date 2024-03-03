@@ -44,11 +44,15 @@ export default function Quiz() {
 
   let questionCountLength = questionIdCount.length;
 
+  if (showResult) {
+    return <Results />;
+  }
+
   if (currentAnswerIndex === undefined) {
     return (
       <div className="flex flex-col items-center h-screen">
         <div className="pt-24 w-full h-full flex flex-col items-center">
-          <div className="bg-white shadow-2xl rounded-lg w-3/4 md:w-1/2 border-2 border-blue-300 p-4">
+          <div className="bg-white shadow-2xl rounded-lg w-3/4 md:w-1/2 border-2 border-blue-400 p-4">
             Quiz does not exist!
           </div>
         </div>
@@ -56,15 +60,11 @@ export default function Quiz() {
     );
   }
 
-  if (showResult) {
-    return <Results />;
-  }
-
   return (
     <>
       <div className="flex flex-col items-center h-screen">
         <div className="pt-24 w-full h-full flex flex-col items-center">
-          <div className="bg-white shadow-2xl rounded-lg w-3/4 md:w-1/2 border-2 border-blue-300 p-4">
+          <div className="bg-white shadow-2xl rounded-lg w-3/4 md:w-1/2 border-2 border-blue-400 p-4">
             <h3 className="text-center text-3xl font-bold">{matchedIdText}</h3>
             {showState && (
               <div className="text-center text-red-500 font-bold text-lg">
@@ -82,7 +82,7 @@ export default function Quiz() {
           </div>
           <div className="flex flex-row justify-between w-3/4 md:w-1/2">
             <button
-              className="rounded-xl p-4 text-xl border-blue-300 text-blue-400"
+              className="rounded-xl p-4 text-xl border-blue-400 text-blue-400"
               onClick={() => {
                 if (currentQuestionId > 0) {
                   setCurrentQuestionId((current) => current - 1);
@@ -94,22 +94,21 @@ export default function Quiz() {
 
             {inputChecked && (
               <button
-                className="rounded-xl p-4 text-xl border-blue-300 text-blue-400"
+                className="rounded-xl p-4 text-xl border-blue-400 text-blue-400"
                 onClick={() => {
-                  if (currentQuestionId + 1 >= questionCountLength) {
-                    setShowResult(true);
-                  } else if (
-                    currentQuestionId >= 0 &&
-                    currentQuestionId + 1 < questionCountLength
-                  ) {
+                  if (currentQuestionId >= 0) {
                     if (currentCheckboxIndex === currentAnswerIndex) {
-                      setCurrentQuestionId(
-                        (prevQuestionId) => prevQuestionId + 1
-                      );
-                      setErrorState("");
-                      setShowState(false);
-                      setCurrentCheckboxIndex(-1);
-                      setInputChecked(false);
+                      if (currentQuestionId + 1 >= questionCountLength) {
+                        setShowResult(true);
+                      } else {
+                        setCurrentQuestionId(
+                          (prevQuestionId) => prevQuestionId + 1
+                        );
+                        setErrorState("");
+                        setShowState(false);
+                        setCurrentCheckboxIndex(-1);
+                        setInputChecked(false);
+                      }
                     } else {
                       setErrorState(
                         "Wrong Answer! Please select a different answer!"
