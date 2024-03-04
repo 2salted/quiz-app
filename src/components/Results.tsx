@@ -19,7 +19,7 @@ export default function Results({ score, questionLength }: Props) {
             </div>
           </div>
           <button className="rounded-xl p-4 text-xl border-blue-400 text-blue-400">
-            <Link to={"/home"}> {"Homepage"}</Link>
+            <Link to={"/"}> {"Homepage"}</Link>
           </button>
         </div>
       </div>

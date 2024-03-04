@@ -7,7 +7,7 @@ import Quiz from "./pages/Quiz.tsx";
 
 const router = createBrowserRouter([
   {
-    path: "/home",
+    path: "/",
     element: <Homepage />,
   },
   {
