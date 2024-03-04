@@ -1,7 +1,7 @@
 let quizes = [
-  { quizId: 1, name: "Test your knowledge about movies" },
-  { quizId: 2, name: "Physics quiz" },
-  { quizId: 3, name: "Math quiz" },
+  { quizId: 1, name: "Movie Quiz" },
+  { quizId: 2, name: "History Quiz" },
+  { quizId: 3, name: "Coming Soon!" },
 ];
 
 let questions = [
@@ -44,32 +44,54 @@ let questions = [
     ],
   },
   {
-    quizId: 2,
-    answerIndex: 0,
-    questionId: 0,
-    text: "Question 1 (id 2)",
-    answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
+    quizId: 1,
+    answerIndex: 3,
+    questionId: 4,
+    text: "Who wrote Harry Potter?",
+    answers: [
+      "Stephen King",
+      "William Shakespeare",
+      "J. R. R. Tolkien",
+      "J. K. Rowling",
+    ],
   },
   {
     quizId: 2,
-    answerIndex: 0,
-    questionId: 1,
-    text: "Question 2 (id 2)",
-    answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
-  },
-  {
-    quizId: 3,
-    answerIndex: 0,
+    answerIndex: 2,
     questionId: 0,
-    text: "Question 1 (id 3)",
-    answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
+    text: "Which was the first president of the USA?",
+    answers: [
+      "Abraham Lincoln",
+      "John F. Kennedy",
+      "George Washington",
+      "Joe Biden",
+    ],
   },
   {
-    quizId: 3,
-    answerIndex: 0,
+    quizId: 2,
+    answerIndex: 1,
     questionId: 1,
-    text: "Question 2 (id 3)",
-    answers: ["answer 1", "answer 2", "answer 3", "answer 4"],
+    text: "Which of these polymaths discovered the laws of physics?",
+    answers: [
+      "Nikolas Tesla",
+      "Isaac Newton",
+      "Albert Einstein",
+      "Stephen Hawkings",
+    ],
+  },
+  {
+    quizId: 2,
+    answerIndex: 3,
+    questionId: 2,
+    text: "How old was Jesus when he died?",
+    answers: ["47", "32", "23", "33"],
+  },
+  {
+    quizId: 2,
+    answerIndex: 0,
+    questionId: 3,
+    text: "What was the highest status a roman could have?",
+    answers: ["Augustus", "Senator", "Patrician", "Plebians"],
   },
 ];
 
