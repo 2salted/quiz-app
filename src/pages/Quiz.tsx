@@ -9,9 +9,8 @@ export default function Quiz() {
   const [inputChecked, setInputChecked] = useState(false);
   const { quizId } = useParams();
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
-  const [errorState, setErrorState] = useState("");
-  const [showState, setShowState] = useState(false);
   const [showResult, setShowResult] = useState(false);
+  const [score, setScore] = useState(0);
 
   let matchedIdText = "";
   let matchedIdAnswers = [""];
@@ -45,7 +44,7 @@ export default function Quiz() {
   let questionCountLength = questionIdCount.length;
 
   if (showResult) {
-    return <Results />;
+    return <Results score={score} questionLength={questionCountLength} />;
   }
 
   if (currentAnswerIndex === undefined) {
@@ -66,11 +65,6 @@ export default function Quiz() {
         <div className="pt-24 w-full h-full flex flex-col items-center">
           <div className="bg-white shadow-2xl rounded-lg w-3/4 md:w-1/2 border-2 border-blue-400 p-4">
             <h3 className="text-center text-3xl font-bold">{matchedIdText}</h3>
-            {showState && (
-              <div className="text-center text-red-500 font-bold text-lg">
-                {errorState}
-              </div>
-            )}
             <div className="flex flex-col">
               <QuizAnswers
                 isChecked={currentCheckboxIndex}
@@ -96,27 +90,18 @@ export default function Quiz() {
               <button
                 className="rounded-xl p-4 text-xl border-blue-400 text-blue-400"
                 onClick={() => {
+                  if (currentCheckboxIndex === currentAnswerIndex) {
+                    setScore((prevScore) => prevScore + 1);
+                  }
                   if (currentQuestionId >= 0) {
-                    if (currentCheckboxIndex === currentAnswerIndex) {
-                      if (currentQuestionId + 1 >= questionCountLength) {
-                        setShowResult(true);
-                      } else {
-                        setCurrentQuestionId(
-                          (prevQuestionId) => prevQuestionId + 1
-                        );
-                        setErrorState("");
-                        setShowState(false);
-                        setCurrentCheckboxIndex(-1);
-                        setInputChecked(false);
-                      }
+                    if (currentQuestionId + 1 >= questionCountLength) {
+                      setShowResult(true);
                     } else {
-                      setErrorState(
-                        "Wrong Answer! Please select a different answer!"
+                      setCurrentQuestionId(
+                        (prevQuestionId) => prevQuestionId + 1
                       );
-                      setShowState(true);
-                      setTimeout(() => {
-                        setShowState(false);
-                      }, 2500);
+                      setCurrentCheckboxIndex(-1);
+                      setInputChecked(false);
                     }
                   }
                 }}
